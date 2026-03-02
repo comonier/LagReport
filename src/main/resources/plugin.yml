@@ -1,0 +1,15 @@
+name: LagReport
+version: '1.0'
+main: com.comonier.lagreport.LagReport
+api-version: '1.21'
+author: Comonier
+description: Relatorio de consumo e sistema de emergencia anti-lag.
+commands:
+  lagreport:
+    description: Comando principal do plugin.
+    usage: /lagreport reload
+    permission: lagreport.admin
+permissions:
+  lagreport.admin:
+    description: Permite recarregar a configuracao do LagReport.
+    default: op
