@@ -11,30 +11,48 @@ public class AntiLagController extends BukkitRunnable {
 
     @Override
     public void run() {
-        // Pega o TPS do ultimo 1 minuto
-        double tpsAtual = Bukkit.getTPS()[0];
+        double[] tpsArray = Bukkit.getTPS();
+        double tpsAtual = tpsArray[0];
+        
+        if (tpsAtual >= 20.0) tpsAtual = 20.0;
+        String tpsFormatado = String.format("%.2f", tpsAtual);
 
-        // Se 15.0 for MAIOR ou IGUAL ao TPS, ativa
         if (15.0 >= tpsAtual) {
             if (modoEmergencia == false) {
                 modoEmergencia = true;
-                String msg = "§c§l[!] MODO DE EMERGENCIA ATIVADO: TPS BAIXO (" + String.format("%.1f", tpsAtual) + ")";
-                Bukkit.broadcastMessage(msg);
                 
-                String webhookUrl = plugin.getConfig().getString("webhook-url");
-                DiscordWebhook.enviar(webhookUrl, "⚠️ **EMERGENCIA ATIVADA:** TPS caiu para " + String.format("%.1f", tpsAtual) + " @everyone");
+                Bukkit.broadcastMessage("§c§l[!] EMERGENCY MODE ACTIVATED: LOW TPS (" + tpsFormatado + ")");
+                
+                String url = plugin.getConfig().getString("webhook-url");
+                String msg = "-=-=-=-=-=-=-=-=-=-=-=-=-=-\n" +
+                    "⚠️ **EMERGENCY ACTIVATED**\n" +
+                    "**TPS**: `" + tpsFormatado + "`\n" +
+                    "-------------------------------\n" +
+                    "Status: `PROTECTION ENABLED`\n" +
+                    "Details: `Redstone, Spawns and Physics frozen.`\n" +
+                    "-=-=-=-=-=-=-=-=-=-=-=-=-=-\n" +
+                    "@everyone";
+                
+                DiscordWebhook.enviar(url, msg);
             }
         }
 
-        // Se o TPS for MAIOR ou IGUAL a 19.5, desativa
         if (tpsAtual >= 19.5) {
             if (modoEmergencia == true) {
                 modoEmergencia = false;
-                String msg = "§a§l[!] MODO DE EMERGENCIA DESATIVADO: TPS ESTABILIZADO.";
-                Bukkit.broadcastMessage(msg);
                 
-                String webhookUrl = plugin.getConfig().getString("webhook-url");
-                DiscordWebhook.enviar(webhookUrl, "✅ **ESTABILIZADO:** O servidor voltou para " + String.format("%.1f", tpsAtual));
+                Bukkit.broadcastMessage("§a§l[!] EMERGENCY MODE DEACTIVATED: SERVER STABILIZED.");
+                
+                String url = plugin.getConfig().getString("webhook-url");
+                String msg = "-=-=-=-=-=-=-=-=-=-=-=-=-=-\n" +
+                    "✅ **SERVER STABILIZED**\n" +
+                    "**TPS**: `" + tpsFormatado + "`\n" +
+                    "-------------------------------\n" +
+                    "Status: `NORMAL OPERATION`\n" +
+                    "Details: `All systems restored.`\n" +
+                    "-=-=-=-=-=-=-=-=-=-=-=-=-=-";
+                
+                DiscordWebhook.enviar(url, msg);
             }
         }
     }

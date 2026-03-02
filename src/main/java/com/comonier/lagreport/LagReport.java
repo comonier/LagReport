@@ -5,72 +5,102 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.command.PluginCommand;
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class LagReport extends JavaPlugin implements TabCompleter {
+
     @Override
     public void onEnable() {
+        try {
+            Bukkit.getScheduler().cancelTasks(this);
+            AntiLagController.modoEmergencia = false;
+        } catch (Exception e) {}
+
         saveDefaultConfig();
         
-        // REGISTRO DO EXECUTOR E DO TAB COMPLETER
-        if (this.getCommand("lagreport") != null) {
-            this.getCommand("lagreport").setExecutor(this);
-            this.getCommand("lagreport").setTabCompleter(this);
+        PluginCommand cmd = this.getCommand("lagreport");
+        if (cmd != null) {
+            cmd.setExecutor(this);
+            cmd.setTabCompleter(this);
         }
 
         Bukkit.getPluginManager().registerEvents(new LagEvents(), this);
 
-        // Tarefa do Reporte Horario (1 hora)
         new AnalyzerTask(this).runTaskTimer(this, 1200L, 72000L);
-
-        // Monitor de Emergencia (5 segundos)
         new AntiLagController(this).runTaskTimer(this, 100L, 100L);
 
-        getLogger().info("LagReport Online - Comando e TabComplete registrados.");
+        getLogger().info("LagReport v1.0 - Enabled.");
+    }
+
+    @Override
+    public void onDisable() {
+        Bukkit.getScheduler().cancelTasks(this);
+        AntiLagController.modoEmergencia = false;
+        getLogger().info("LagReport v1.0 - Disabled.");
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        // Verifica se existe ao menos 1 argumento
-        if (args.length >= 1) {
-            if (args[0].equalsIgnoreCase("reload")) {
-                if (sender.hasPermission("lagreport.admin")) {
-                    
-                    reloadConfig();
-                    sender.sendMessage("§a[LagReport] Configuracao recarregada!");
+        if (!this.isEnabled()) return false;
 
-                    String url = getConfig().getString("webhook-url");
-                    double tps = Bukkit.getTPS()[0]; // Pega o primeiro indice (TPS atual)
-                    String msgTeste = "🔄 **Teste de Conexao:** Webhook vinculada com sucesso!\\nTPS Atual: " + String.format("%.2f", tps);
-                    
-                    DiscordWebhook.enviar(url, msgTeste);
-                    sender.sendMessage("§e[LagReport] Tentando enviar teste para o Discord...");
-                    
-                    return true;
-                }
-                sender.sendMessage("§cVoce nao tem permissao.");
+        if (args.length == 0) {
+            sender.sendMessage("§6§lLagReport §8- §fCommands:");
+            sender.sendMessage("§e/lagreport reload §7- Reload settings.");
+            sender.sendMessage("§e/lagreport test §7- Trigger report now.");
+            return true;
+        }
+
+        if (args.length > 1) {
+            sender.sendMessage("§cUnknown command. Type \"/lagreport\" for help.");
+            return true;
+        }
+
+        String sub = args[0].toLowerCase();
+
+        if (sub.equals("reload")) {
+            if (sender.hasPermission("lagreport.admin")) {
+                reloadConfig();
+                sender.sendMessage("§a[LagReport] Config reloaded!");
+                
+                String url = getConfig().getString("webhook-url");
+                double[] tpsArr = Bukkit.getTPS();
+                DiscordWebhook.enviar(url, "🔄 **System Reload:** Webhook active. TPS: " + String.format("%.2f", tpsArr[0]));
                 return true;
             }
+            sender.sendMessage("§cNo permission.");
+            return true;
         }
-        
-        sender.sendMessage("§eUse: /lagreport reload");
+
+        if (sub.equals("test")) {
+            if (sender.hasPermission("lagreport.admin")) {
+                sender.sendMessage("§e[LagReport] Running manual analysis...");
+                new AnalyzerTask(this).run();
+                sender.sendMessage("§a[LagReport] Report sent to Discord!");
+                return true;
+            }
+            sender.sendMessage("§cNo permission.");
+            return true;
+        }
+
+        sender.sendMessage("§cUnknown command. Type \"/lagreport\" for help.");
         return true;
     }
 
-    // LOGICA DO TAB COMPLETE (Sugestoes no chat)
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        List<String> sugestoes = new ArrayList<>();
-        
-        // Se estiver no primeiro argumento e tiver permissao
+        if (!sender.hasPermission("lagreport.admin")) return Collections.emptyList();
+
         if (args.length == 1) {
-            if (sender.hasPermission("lagreport.admin")) {
-                sugestoes.add("reload");
-            }
+            List<String> list = new ArrayList<>();
+            String input = args[0].toLowerCase();
+            if ("reload".startsWith(input)) list.add("reload");
+            if ("test".startsWith(input)) list.add("test");
+            return list;
         }
-        
-        return sugestoes;
+        return Collections.emptyList();
     }
 }

@@ -11,41 +11,14 @@ import org.bukkit.Material;
 
 public class LagEvents implements Listener {
 
-    @EventHandler
-    public void onRedstone(BlockRedstoneEvent e) {
-        if (AntiLagController.modoEmergencia == true) {
-            e.setNewCurrent(0);
-        }
-    }
-
-    @EventHandler
-    public void onSpawn(EntitySpawnEvent e) {
-        if (AntiLagController.modoEmergencia == true) {
-            e.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onExplode(EntityExplodeEvent e) {
-        if (AntiLagController.modoEmergencia == true) {
-            e.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onPhysics(BlockPhysicsEvent e) {
-        if (AntiLagController.modoEmergencia == true) {
+    @EventHandler public void onRedstone(BlockRedstoneEvent e) { if (AntiLagController.modoEmergencia) e.setNewCurrent(0); }
+    @EventHandler public void onSpawn(EntitySpawnEvent e) { if (AntiLagController.modoEmergencia) e.setCancelled(true); }
+    @EventHandler public void onExplode(EntityExplodeEvent e) { if (AntiLagController.modoEmergencia) e.setCancelled(true); }
+    @EventHandler public void onPhysics(BlockPhysicsEvent e) {
+        if (AntiLagController.modoEmergencia) {
             Material m = e.getBlock().getType();
-            if (m == Material.SAND || m == Material.GRAVEL || m == Material.ANVIL) {
-                e.setCancelled(true);
-            }
+            if (m == Material.SAND || m == Material.GRAVEL || m == Material.ANVIL) e.setCancelled(true);
         }
     }
-
-    @EventHandler
-    public void onFlow(BlockFromToEvent e) {
-        if (AntiLagController.modoEmergencia == true) {
-            e.setCancelled(true);
-        }
-    }
+    @EventHandler public void onFlow(BlockFromToEvent e) { if (AntiLagController.modoEmergencia) e.setCancelled(true); }
 }
