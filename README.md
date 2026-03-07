@@ -1,4 +1,4 @@
-# LagReport 🛡️ [v2.1]
+# LagReport 🛡️ [v2.2]
 
 **LagReport** is a high-performance audit and active protection plugin for **Paper 1.21.1**. It provides transparent data comparing client-side load vs. actual hardware usage, while offering an automated emergency "Halt" system to prevent server crashes.
 
@@ -16,6 +16,7 @@ Block physics (Sand, Gravel, Anvils) and Liquid flow (Water/Lava).<br>
 
 ## 🛠️ Commands and Permissions
 
+
 | Command | Description | Permission |
 | :--- | :--- | :--- |
 | `/lagreport reload` | Reloads config and language files. | `lagreport.admin` |
@@ -30,7 +31,7 @@ Edit `plugins/LagReport/config.yml` to set your preferences:
 # LagReport Config
 webhook-url: "YOUR_WEBHOOK_URL_HERE"
 # Choose your language: "en" or "pt"
-language: "en"
+language: "pt"
 ```
 
 ## 📊 Audit Logic
