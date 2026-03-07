@@ -34,7 +34,7 @@ webhook-url: "YOUR_WEBHOOK_URL_HERE"
 language: "en"
 ```
 
-📊 Audit Logic
-The plugin distinguishes between Individual Load (what players are rendering) and Hardware Proof (what the server is actually processing). This transparency helps identify if lag is caused by player clusters or external server factors.
+## 📊 Audit Logic
+- The plugin distinguishes between Individual Load (what players are rendering) and Hardware Proof (what the server is actually processing). This transparency helps identify if lag is caused by player clusters or external server factors.
 
 Developed with ❤️ by Comonier
