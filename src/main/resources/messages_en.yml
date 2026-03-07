@@ -17,3 +17,9 @@ report:
   total_entities: "TOTAL ENTITIES: %d"
   tps_label: "SERVER TPS: %.2f"
   footer_note: "*Note: Player sums represent cumulative client-side processing; Server Status reflects unique hardware-side instances.*"
+
+emergency:
+  activated_game: "§c§l[!] EMERGENCY MODE ACTIVATED: LOW TPS (%s)"
+  activated_discord: "⚠️ **EMERGENCY ACTIVATED**\n**TPS**: `%s`\nStatus: `PROTECTION ENABLED`\n@everyone"
+  stabilized_game: "§a§l[!] EMERGENCY MODE DEACTIVATED: SERVER STABILIZED."
+  stabilized_discord: "✅ **SERVER STABILIZED**\n**TPS**: `%s`\nStatus: `NORMAL OPERATION`"

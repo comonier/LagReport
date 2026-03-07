@@ -48,28 +48,33 @@ public class LagReport extends JavaPlugin implements TabCompleter {
         new AnalyzerTask(this).runTaskTimer(this, 1200L, 72000L);
         new AntiLagController(this).runTaskTimer(this, 100L, 100L);
 
-        getLogger().info("LagReport v1.0 - Plugin Enabled (Language: " + getConfig().getString("language") + ")");
+        // CORREÇÃO: Log agora exibe v2.0
+        getLogger().info("LagReport v2.0 - Plugin Enabled (Language: " + getConfig().getString("language") + ")");
     }
 
     @Override
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
         AntiLagController.modoEmergencia = false;
-        getLogger().info("LagReport v1.0 - Plugin Disabled.");
+        getLogger().info("LagReport v2.0 - Plugin Disabled.");
     }
 
     // Carrega o arquivo de mensagem baseado na config.yml
     public void loadMessages() {
         String lang = getConfig().getString("language", "en");
         File langFile = new File(getDataFolder(), "messages_" + lang + ".yml");
+        
+        // Se o arquivo de idioma escolhido não existir, tenta o padrão em inglês
         if (!langFile.exists()) {
             langFile = new File(getDataFolder(), "messages_en.yml");
         }
+        
         messages = YamlConfiguration.loadConfiguration(langFile);
     }
 
     // Método central para pegar mensagens traduzidas com suporte a cores &
     public String getMsg(String path) {
+        if (messages == null) return "§cMessages not loaded!";
         String msg = messages.getString(path);
         if (msg == null) return "§cMissing key: " + path;
         return ChatColor.translateAlternateColorCodes('&', msg);
