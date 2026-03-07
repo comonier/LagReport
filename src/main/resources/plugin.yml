@@ -1,5 +1,5 @@
 name: LagReport
-version: '2.0'
+version: '2.1'
 main: com.comonier.lagreport.LagReport
 api-version: '1.21'
 author: Comonier

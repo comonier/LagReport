@@ -48,15 +48,15 @@ public class LagReport extends JavaPlugin implements TabCompleter {
         new AnalyzerTask(this).runTaskTimer(this, 1200L, 72000L);
         new AntiLagController(this).runTaskTimer(this, 100L, 100L);
 
-        // CORREÇÃO: Log agora exibe v2.0
-        getLogger().info("LagReport v2.0 - Plugin Enabled (Language: " + getConfig().getString("language") + ")");
+        // LOG DINÂMICO: Puxa a versão direto do plugin.yml/pom.xml
+        getLogger().info("LagReport v" + getDescription().getVersion() + " - Plugin Enabled (Language: " + getConfig().getString("language") + ")");
     }
 
     @Override
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
         AntiLagController.modoEmergencia = false;
-        getLogger().info("LagReport v2.0 - Plugin Disabled.");
+        getLogger().info("LagReport - Plugin Disabled.");
     }
 
     // Carrega o arquivo de mensagem baseado na config.yml
@@ -64,7 +64,6 @@ public class LagReport extends JavaPlugin implements TabCompleter {
         String lang = getConfig().getString("language", "en");
         File langFile = new File(getDataFolder(), "messages_" + lang + ".yml");
         
-        // Se o arquivo de idioma escolhido não existir, tenta o padrão em inglês
         if (!langFile.exists()) {
             langFile = new File(getDataFolder(), "messages_en.yml");
         }
