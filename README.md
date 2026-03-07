@@ -35,8 +35,6 @@ language: "en"
 ```
 
 📊 Audit Logic
-The plugin distinguishes between Individual Load (what players are rendering/processing nearby) and Hardware Proof (what the server is actually computing).
-
-By using an optimized Redstone Scanner (3-block step iteration), it identifies lag sources without adding overhead, helping you determine if lag is caused by player clusters or external hardware factors.
+The plugin distinguishes between Individual Load (what players are rendering) and Hardware Proof (what the server is actually processing). This transparency helps identify if lag is caused by player clusters or external server factors.
 
 Developed with ❤️ by Comonier
