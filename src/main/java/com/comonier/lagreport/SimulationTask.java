@@ -18,6 +18,11 @@ public class SimulationTask extends BukkitRunnable {
     public void run() {
         String url = plugin.getConfig().getString("webhook-url");
 
+        // No início da tarefa (60s), já avisamos ao controlador para ficar em standby
+        if (seconds == 60) {
+            AntiLagController.emSimulacao = true;
+        }
+
         // Alertas Periódicos (60, 30, 20, 10s)
         if (seconds == 60 || seconds == 30 || seconds == 20 || seconds == 10) {
             String gameMsg = String.format(plugin.getMsg("simulation.warning"), seconds);
@@ -35,7 +40,7 @@ public class SimulationTask extends BukkitRunnable {
         // ATIVAÇÃO (0s)
         if (seconds == 0) {
             AntiLagController.modoEmergencia = true;
-            freezeAllmobs(); // Segurança LMT: Ignora quem está no laço
+            freezeAllmobs(); 
             broadcastAndDiscord(url, plugin.getMsg("simulation.activated_game"), plugin.getMsg("simulation.activated_discord"));
         }
 
@@ -48,7 +53,10 @@ public class SimulationTask extends BukkitRunnable {
         // DESATIVAÇÃO E NORMALIZAÇÃO (-15s)
         if (seconds == -15) {
             AntiLagController.modoEmergencia = false;
-            restoreAllmobs(); // Segurança LMT: Só devolve IA se NÃO estiver no laço
+            // LIBERA O CONTROLADOR: Agora o sistema automático pode voltar a monitorar
+            AntiLagController.emSimulacao = false; 
+            
+            restoreAllmobs(); 
             broadcastAndDiscord(url, plugin.getMsg("simulation.finished_game"), plugin.getMsg("simulation.finished_discord"));
             this.cancel();
         }

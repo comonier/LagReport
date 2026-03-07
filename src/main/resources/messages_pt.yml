@@ -1,11 +1,11 @@
 simulation:
-  warning: "§6§l[!] ALERT: §eSimulação em %d segundos!"
+  warning: "§0[§a!§0] §0[§l§cALERT§0]§0: §7Simulação em§a %d §7segundos!"
   alert_discord: "⚠️ **ATENÇÃO:** Em %d segundos o servidor entrará em estado de emergência (SIMULAÇÃO). HALT ON! 🚨"
-  final_countdown: "§c§l[!] HALT EM: %d..."
-  activated_game: "\n§4§l🚨 ESTADO DE EMERGÊNCIA: SIMULAÇÃO ATIVA 🚨\n§f- HALT ON: Eventos desativados (Água, Mobs, IA, Redstone).\n§7O teste termina em 15 segundos... (ou não, bugs ocorrem 😂)\n"
+  final_countdown: "§0[§a!§0] §0[§l§cALERT§0]§0: §7Simulação em§a %d §7segundos!"
+  activated_game: "\n§0[§a!§0] §0[§e☢ §eSimulação Ativa ☢§0]\n§0[§a!§0] §0[§4HALT ON§0] §0[§aEventos desativados§0]§0[§bÁgua§7, §eMobs§7, §fIA§7, §cRedstone§0]\n§0[§a!§0] §7O teste termina em §a15 §7segundos... (ou não, bugs ocorrem 😂)\n"
   activated_discord: "🚨 **HALT ON ATIVADO** (Modo Simulação). Sistemas congelados! 😂"
-  tick_countdown: "§eFinalizando teste em %d segundos..."
-  finished_game: "§a§l[!] Teste Finalizado. [HALT OFF] Sistemas normalizados."
+  tick_countdown: "§0[§a!§0] §0[§4HALT ON§0] §8Finalizando teste em§a %d §8segundos..."
+  finished_game: "§0[§a!§0]§0[§aHALT OFF§0]§0[§7Testes Finalizados§|§7Sistemas normalizados§0]"
   finished_discord: "✅ **SIMULAÇÃO ENCERRADA**: Servidor estabilizado."
 
 report:
@@ -19,7 +19,7 @@ report:
   footer_note: "*Nota: Somas de jogadores representam carga cumulativa dos clientes; Status do Servidor reflete instâncias únicas de hardware.*"
 
 emergency:
-  activated_game: "§c§l[!] MODO DE EMERGÊNCIA ATIVADO: TPS BAIXO (%s)"
-  activated_discord: "⚠️ **EMERGÊNCIA ATIVADA**\n**TPS**: `%s`\nStatus: `PROTEÇÃO LIGADA`\n@everyone"
-  stabilized_game: "§a§l[!] MODO DE EMERGÊNCIA DESATIVADO: SERVIDOR ESTABILIZADO."
-  stabilized_discord: "✅ **SERVIDOR ESTABILIZADO**\n**TPS**: `%s`\nStatus: `OPERAÇÃO NORMAL`"
+  activated_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §4§lON§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
+  activated_discord: "⚠️ **HALT ON**\n**TPS**: `%s`\nStatus: `Desligando Minecraft Events`\n@everyone"
+  stabilized_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §a§lOFF§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
+  stabilized_discord: "✅ **HALT OFF**\n**TPS**: `%s`\nStatus: `Religando Minecraft Events`"

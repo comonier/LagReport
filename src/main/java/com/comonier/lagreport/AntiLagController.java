@@ -10,16 +10,21 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class AntiLagController extends BukkitRunnable {
     private final LagReport plugin;
     public static boolean modoEmergencia = false;
+    // Nova flag para impedir que o controlador automático interfira no modo simulação
+    public static boolean emSimulacao = false; 
 
     public AntiLagController(LagReport plugin) { this.plugin = plugin; }
 
     @Override
     public void run() {
+        // Se uma simulação manual estiver rodando, o controlador automático fica em standby
+        if (emSimulacao) return;
+
         double[] tpsArray = Bukkit.getTPS();
         double tpsAtual = Math.min(20.0, tpsArray[0]);
         String tpsFormatado = String.format("%.2f", tpsAtual);
 
-        // ATIVAÇÃO REAL
+        // ATIVAÇÃO REAL (Gatilho por TPS baixo)
         if (15.0 >= tpsAtual && !modoEmergencia) {
             modoEmergencia = true;
             freezeAllMobs(); 
@@ -29,12 +34,13 @@ public class AntiLagController extends BukkitRunnable {
             broadcastAndDiscord(gameMsg, discMsg);
         }
 
-        // DESATIVAÇÃO REAL
+        // DESATIVAÇÃO REAL (Gatilho por normalização do TPS)
         if (tpsAtual >= 19.5 && modoEmergencia) {
             modoEmergencia = false;
             restoreAllMobs(); 
             
-            String gameMsg = plugin.getMsg("emergency.stabilized_game");
+            // CORREÇÃO: Agora usa String.format para processar o (%s) do TPS
+            String gameMsg = String.format(plugin.getMsg("emergency.stabilized_game"), tpsFormatado);
             String discMsg = String.format(plugin.getMsg("emergency.stabilized_discord"), tpsFormatado);
             broadcastAndDiscord(gameMsg, discMsg);
         }
