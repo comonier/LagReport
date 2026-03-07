@@ -1,0 +1,19 @@
+simulation:
+  warning: "§6§l[!] ALERT: §eSimulation in %d seconds!"
+  alert_discord: "⚠️ **WARNING:** In %d seconds the server will enter emergency state (SIMULATION). HALT ON! 🚨"
+  final_countdown: "§c§l[!] HALT IN: %d..."
+  activated_game: "\n§4§l🚨 EMERGENCY STATE: SIMULATION ACTIVE 🚨\n§f- HALT ON: Events disabled (Water, Mobs, AI, Redstone).\n§7Ending in 15 seconds... (or not, bugs happen 😂)\n"
+  activated_discord: "🚨 **HALT ON ACTIVATED** (Simulation mode). Systems frozen! 😂"
+  tick_countdown: "§eFinishing test in %d seconds..."
+  finished_game: "§a§l[!] Test Finished. [HALT OFF] Systems normalized."
+  finished_discord: "✅ **SIMULATION ENDED**: Server stabilized."
+
+report:
+  title: "LAGREPORT - AUDIT MODE"
+  header: "PLAYER | CHUNKS | ENTITIES | REDSTONE"
+  sum_players: "SUM PLAYERS (Individual Load):"
+  server_status: "SERVER REAL STATUS (Hardware Proof):"
+  total_chunks: "TOTAL CHUNKS: %d"
+  total_entities: "TOTAL ENTITIES: %d"
+  tps_label: "SERVER TPS: %.2f"
+  footer_note: "*Note: Player sums represent cumulative client-side processing; Server Status reflects unique hardware-side instances.*"

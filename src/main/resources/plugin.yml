@@ -1,15 +1,15 @@
 name: LagReport
-version: '1.0'
+version: '2.0'
 main: com.comonier.lagreport.LagReport
 api-version: '1.21'
 author: Comonier
-description: Relatorio de consumo e sistema de emergencia anti-lag.
+description: Audit mode and emergency anti-lag system with Discord integration.
 commands:
   lagreport:
-    description: Comando principal para gerenciar o plugin.
-    usage: /lagreport [reload|test]
+    description: Main command for LagReport management.
+    usage: /lagreport [reload|test|simulate]
     permission: lagreport.admin
 permissions:
   lagreport.admin:
-    description: Permite usar os comandos do LagReport.
+    description: Allows administrative access to LagReport commands and audits.
     default: op

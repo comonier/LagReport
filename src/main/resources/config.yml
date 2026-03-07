@@ -1,4 +1,4 @@
-
 # LagReport Config
-# Insira a URL do Webhook do seu canal do Discord abaixo:
 webhook-url: "SUA_URL_AQUI"
+# Escolha o idioma: pt ou en
+language: "pt"

@@ -1,0 +1,19 @@
+simulation:
+  warning: "§6§l[!] ALERT: §eSimulação em %d segundos!"
+  alert_discord: "⚠️ **ATENÇÃO:** Em %d segundos o servidor entrará em estado de emergência (SIMULAÇÃO). HALT ON! 🚨"
+  final_countdown: "§c§l[!] HALT EM: %d..."
+  activated_game: "\n§4§l🚨 ESTADO DE EMERGÊNCIA: SIMULAÇÃO ATIVA 🚨\n§f- HALT ON: Eventos desativados (Água, Mobs, IA, Redstone).\n§7O teste termina em 15 segundos... (ou não, bugs ocorrem 😂)\n"
+  activated_discord: "🚨 **HALT ON ATIVADO** (Modo Simulação). Sistemas congelados! 😂"
+  tick_countdown: "§eFinalizando teste em %d segundos..."
+  finished_game: "§a§l[!] Teste Finalizado. [HALT OFF] Sistemas normalizados."
+  finished_discord: "✅ **SIMULAÇÃO ENCERRADA**: Servidor estabilizado."
+
+report:
+  title: "RELATÓRIO DE AUDITORIA - LAGREPORT"
+  header: "JOGADOR | CHUNKS | ENTIDADES | REDSTONE"
+  sum_players: "SOMA DOS JOGADORES (Visão Individual):"
+  server_status: "STATUS REAL DO SERVIDOR (Prova Real):"
+  total_chunks: "TOTAL CHUNKS: %d"
+  total_entities: "TOTAL ENTIDADES: %d"
+  tps_label: "SERVER TPS: %.2f"
+  footer_note: "*Nota: Somas de jogadores representam carga cumulativa dos clientes; Status do Servidor reflete instâncias únicas de hardware.*"
