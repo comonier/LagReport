@@ -4,18 +4,17 @@
 
 ## 🚀 Features
 
-- **Audit Consumption Report:** Every 1 hour, the plugin performs a "Hardware Proof" analysis. It lists individual player impact (Chunks, Entities, Redstone) and compares the sum against the server's actual hardware status.
-- **Emergency Mode (Anti-Lag):** If TPS drops to **15.0** or lower, the plugin triggers a global **HALT**, disabling:
-  - All entity spawning, explosions, and redstone clocks.
-  - Block physics (Sand, Gravel, Anvils) and Liquid flow (Water/Lava).
-- **Leash-Aware AI Safety:** 🛡️ Unlike other anti-lag plugins, LagReport **never** interferes with leashed entities. This ensures full compatibility with plugins like *LeashedMobsTeleport*, preserving the "asleep" or "tethered" state of mobs during and after emergencies.
-- **Automatic Recovery:** Systems are restored only when the TPS stabilizes at **19.5** or higher.
-- **Emergency Simulation:** A built-in 60-second sequence to test the "Halt" mechanics and Discord alerts safely.
-- **Discord Integration:** Detailed audit logs and @everyone emergency alerts via Webhook.
-- **Multi-language Support:** Native support for English (EN) and Portuguese (PT).
+**Audit Consumption Report:** Every 1 hour, the plugin performs a "Hardware Proof" analysis. It lists individual player impact (Chunks, Entities, Redstone) and compares the sum against the server's actual hardware status.<br>
+**Emergency Mode (Anti-Lag):** If TPS drops to 15.0 or lower, the plugin triggers a global HALT, disabling:<br>
+All entity spawning, explosions, and redstone clocks.<br>
+Block physics (Sand, Gravel, Anvils) and Liquid flow (Water/Lava).<br>
+**Leash-Aware AI Safety:** 🛡️ Unlike other anti-lag plugins, LagReport never interferes with leashed entities. This ensures full compatibility with plugins like LeashedMobsTeleport, preserving the "asleep" or "tethered" state of mobs during and after emergencies.<br>
+**Automatic Recovery:** Systems are restored only when the TPS stabilizes at 19.5 or higher.<br>
+**Emergency Simulation:** A built-in 60-second sequence to test the "Halt" mechanics and Discord alerts safely.<br>
+**Discord Integration:** Detailed audit logs and @everyone emergency alerts via Webhook.<br>
+**Multi-language Support:** Native support for English (EN) and Portuguese (PT).
 
 ## 🛠️ Commands and Permissions
-
 
 | Command | Description | Permission |
 | :--- | :--- | :--- |
