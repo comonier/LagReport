@@ -1,5 +1,5 @@
 name: LagReport
-version: '2.2'
+version: '2.3'
 main: com.comonier.lagreport.LagReport
 api-version: '1.21'
 author: Comonier
@@ -8,6 +8,10 @@ commands:
   lagreport:
     description: Main command for LagReport management.
     usage: /lagreport [reload|test|simulate]
+    permission: lagreport.admin
+  sftimings:
+    description: Sends Slimefun performance report to Discord.
+    usage: /sftimings [test]
     permission: lagreport.admin
 permissions:
   lagreport.admin:

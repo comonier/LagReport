@@ -18,76 +18,54 @@ public class SimulationTask extends BukkitRunnable {
     public void run() {
         String url = plugin.getConfig().getString("webhook-url");
 
-        // No início da tarefa (60s), já avisamos ao controlador para ficar em standby
-        if (seconds == 60) {
-            AntiLagController.emSimulacao = true;
-        }
+        if (seconds == 60) AntiLagController.emSimulacao = true;
 
-        // Alertas Periódicos (60, 30, 20, 10s)
         if (seconds == 60 || seconds == 30 || seconds == 20 || seconds == 10) {
             String gameMsg = String.format(plugin.getMsg("simulation.warning"), seconds);
             String discMsg = String.format(plugin.getMsg("simulation.alert_discord"), seconds);
             broadcastAndDiscord(url, gameMsg, discMsg);
         }
 
-        // Contagem Regressiva Final (5s a 1s)
         if (seconds <= 5 && seconds > 0) {
             String countMsg = String.format(plugin.getMsg("simulation.final_countdown"), seconds);
-            broadcastAndDiscord(null, countMsg, null);
+            Bukkit.broadcastMessage(countMsg);
             Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1.2f));
         }
 
-        // ATIVAÇÃO (0s)
         if (seconds == 0) {
             AntiLagController.modoEmergencia = true;
-            freezeAllmobs(); 
+            manageAI(false);
             broadcastAndDiscord(url, plugin.getMsg("simulation.activated_game"), plugin.getMsg("simulation.activated_discord"));
         }
 
-        // FEEDBACK DURANTE O HALT (15s de teste)
         if (seconds < 0 && seconds > -15) {
-            int timeLeft = 15 + seconds;
-            Bukkit.broadcastMessage(String.format(plugin.getMsg("simulation.tick_countdown"), timeLeft));
+            Bukkit.broadcastMessage(String.format(plugin.getMsg("simulation.tick_countdown"), (15 + seconds)));
         }
 
-        // DESATIVAÇÃO E NORMALIZAÇÃO (-15s)
         if (seconds == -15) {
             AntiLagController.modoEmergencia = false;
-            // LIBERA O CONTROLADOR: Agora o sistema automático pode voltar a monitorar
             AntiLagController.emSimulacao = false; 
-            
-            restoreAllmobs(); 
+            manageAI(true);
             broadcastAndDiscord(url, plugin.getMsg("simulation.finished_game"), plugin.getMsg("simulation.finished_discord"));
             this.cancel();
         }
-
         seconds--;
     }
 
-    private void freezeAllmobs() {
+    private void manageAI(boolean state) {
         for (World w : Bukkit.getWorlds()) {
             for (Entity en : w.getEntities()) {
                 if (en instanceof LivingEntity mob && !mob.isLeashed() && !(en instanceof Player)) {
-                    mob.setAI(false);
+                    mob.setAI(state);
                 }
             }
         }
     }
 
-    private void restoreAllmobs() {
-        for (World w : Bukkit.getWorlds()) {
-            for (Entity en : w.getEntities()) {
-                if (en instanceof LivingEntity mob && !mob.isLeashed() && !(en instanceof Player)) {
-                    mob.setAI(true);
-                }
-            }
-        }
-    }
-
-    private void broadcastAndDiscord(String url, String gameMsg, String discordMsg) {
-        if (gameMsg != null) Bukkit.broadcastMessage(gameMsg);
-        if (url != null && discordMsg != null && !url.contains("SUA_URL_AQUI")) {
-            DiscordWebhook.enviar(url, discordMsg);
+    private void broadcastAndDiscord(String url, String game, String discord) {
+        if (game != null) Bukkit.broadcastMessage(game);
+        if (url != null && discord != null && !url.contains("SUA_URL")) {
+            DiscordWebhook.enviar(url, discord);
         }
     }
 }

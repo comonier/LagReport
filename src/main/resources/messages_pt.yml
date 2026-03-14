@@ -1,3 +1,5 @@
+prefix: "§0[§a!§0] §0[§cLagReport§0] "
+
 simulation:
   warning: "§0[§a!§0] §0[§l§cALERT§0]§0: §7Simulação em§a %d §7segundos!"
   alert_discord: "⚠️ **ATENÇÃO:** Em %d segundos o servidor entrará em estado de emergência (SIMULAÇÃO). HALT ON! 🚨"
@@ -23,3 +25,12 @@ emergency:
   activated_discord: "⚠️ **HALT ON**\n**TPS**: `%s`\nStatus: `Desligando Minecraft Events`\n@everyone"
   stabilized_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §a§lOFF§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
   stabilized_discord: "✅ **HALT OFF**\n**TPS**: `%s`\nStatus: `Religando Minecraft Events`"
+
+commands:
+  no_permission: "§cVocê não tem permissão para usar este comando."
+  reload_success: "§aConfigurações e idiomas recarregados com sucesso!"
+  audit_generating: "§eGerando auditoria de hardware... Verifique o Discord."
+  audit_sent: "§aRelatório de hardware enviado com sucesso!"
+  simulation_start: "§eIniciando sequência de simulação de 60 segundos..."
+  sf_requesting: "§eSolicitando timings do Slimefun... Verifique o Discord em instantes."
+  unknown: "§cComando desconhecido. Use /lagreport para ajuda."

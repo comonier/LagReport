@@ -1,4 +1,6 @@
 # LagReport Config
-webhook-url: "SUA_URL_AQUI"
+webhook-url: "URL_HARDWARE"
+slimefun-webhook-url: "URL_SLIMEFUN"
+
 # Escolha o idioma: pt ou en
 language: "pt"
