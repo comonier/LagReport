@@ -4,3 +4,37 @@ slimefun-webhook-url: "URL_SLIMEFUN"
 
 # Escolha o idioma: pt ou en
 language: "pt"
+
+# Configurações de performance
+# Performance settings
+settings:
+# TPS below this value triggers the 60s countdown to HALT ON
+  tps-min-threshold: 15.0
+# TPS above this value deactivates the emergency mode (HALT OFF)
+  tps-max-threshold: 19.5
+# Automatically clears all ground items (drops) when HALT ON activates
+  clear-drops-on-activation: false
+# O que deve ser desativado durante o HALT ON?
+# Which systems should be disabled during HALT ON mode?
+# true = Event is disabled (Halt active) | false = Event remains normal
+halt-on-settings:
+  disable-redstone: true
+  disable-mob-spawn: true
+  disable-explosions: true
+  disable-mob-ai: true
+  disable-gravity-blocks: true
+  disable-liquid-flow: true
+  disable-pistons: true
+  disable-hoppers: true
+  disable-crop-growth: true
+  disable-portals: true
+  disable-enderman-teleport: true
+  disable-villager-trading: true
+  disable-armor-stand-interact: true
+  disable-leaf-decay: true
+# Novos controles de propagação e clima:
+# Weather, fire, and block spreading controls:
+  disable-fire-spread: true
+  disable-ice-melt: true
+  disable-ice-form: true
+  disable-grass-spread: true

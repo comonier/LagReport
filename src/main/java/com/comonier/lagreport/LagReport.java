@@ -34,12 +34,11 @@ public class LagReport extends JavaPlugin {
         PluginCommand sfCmd = this.getCommand("sftimings");
         if (sfCmd != null) sfCmd.setExecutor(new SlimefunCommand(this));
 
-        Bukkit.getPluginManager().registerEvents(new LagEvents(), this);
+        // ATUALIZADO: Passando 'this' para o LagEvents
+        Bukkit.getPluginManager().registerEvents(new LagEvents(this), this);
         
-        // Relatório Hardware (1h) - Webhook Padrão
         new AnalyzerTask(this).runTaskTimer(this, 1200L, 72000L);
         
-        // Relatório Slimefun (1h, delay 5min) - Webhook SF
         new BukkitRunnable() {
             @Override
             public void run() { new Slimefun(LagReport.this).reportTimings(); }

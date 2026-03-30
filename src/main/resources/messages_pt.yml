@@ -5,9 +5,9 @@ simulation:
   alert_discord: "⚠️ **ATENÇÃO:** Em %d segundos o servidor entrará em estado de emergência (SIMULAÇÃO). HALT ON! 🚨"
   final_countdown: "§0[§a!§0] §0[§l§cALERT§0]§0: §7Simulação em§a %d §7segundos!"
   activated_game: "\n§0[§a!§0] §0[§e☢ §eSimulação Ativa ☢§0]\n§0[§a!§0] §0[§4HALT ON§0] §0[§aEventos desativados§0]§0[§bÁgua§7, §eMobs§7, §fIA§7, §cRedstone§0]\n§0[§a!§0] §7O teste termina em §a15 §7segundos... (ou não, bugs ocorrem 😂)\n"
-  activated_discord: "🚨 **HALT ON ATIVADO** (Modo Simulação). Sistemas congelados! 😂"
+  activated_discord: "🚨 **HALT ON ATIVADO** (Modo Simulação). Sistemas congelados!"
   tick_countdown: "§0[§a!§0] §0[§4HALT ON§0] §8Finalizando teste em§a %d §8segundos..."
-  finished_game: "§0[§a!§0]§0[§aHALT OFF§0]§0[§7Testes Finalizados§|§7Sistemas normalizados§0]"
+  finished_game: "§0[§a!§0]§0[§aHALT OFF§0]§0[§7Testes Finalizados§0][§7Sistemas normalizados§0]"
   finished_discord: "✅ **SIMULAÇÃO ENCERRADA**: Servidor estabilizado."
 
 report:
@@ -34,3 +34,13 @@ commands:
   simulation_start: "§eIniciando sequência de simulação de 60 segundos..."
   sf_requesting: "§eSolicitando timings do Slimefun... Verifique o Discord em instantes."
   unknown: "§cComando desconhecido. Use /lagreport para ajuda."
+
+emergency:
+  pre_alert_game: "§0[§a!§0] §0[§l§cALERTA§0] §7TPS baixo (§c%s§7). O modo §eHALT ON §7será ativado em §a60 segundos§7!"
+  pre_alert_discord: "⚠️ **PRÉ-ALERTA DE EMERGÊNCIA**: TPS em `%s`. HALT ON em 60 segundos!"
+  event_info: "§8- §7Sistemas afetados: §f%s"
+  ticket_invite: "§e§lDICA: §7Acredita que sua farm está causando lag? Abra um §b/ticket§7! A staff pode otimizar o servidor para você manter sua farm ativa."
+  pre_alert_60s: "§0[§a!§0] §0[§l§cALERTA§0] §7TPS baixo (§c%s§7). §eHALT ON §7em §a60 segundos§7!"
+  pre_alert_30s: "§0[§a!§0] §0[§l§cALERTA§0] §7Emergência iminente! §eHALT ON §7em §a30 segundos§7!"
+  pre_alert_10s: "§0[§a!§0] §0[§l§cALERTA§0] §7Ativando protocolos em §a%d §7segundos..."
+
