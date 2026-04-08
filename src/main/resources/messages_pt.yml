@@ -27,9 +27,10 @@ emergency:
   event_info: "§8- §7Sistemas afetados: §f%s"
   ticket_invite: "§e§lDICA: §7Acredita que sua farm causa lag? Abra um §b/ticket§7! A staff pode otimizar o servidor."
   activated_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §4§lON§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
-  activated_discord: "⚠️ **HALT ON ATIVADO**\n**TPS**: `%s`\nStatus: `Sistemas configurados foram desligados`"
+  activated_discord: "⚠️ **HALT ON ATIVADO**\n**TPS**: `%s`\nStatus: `Sistemas configurados desligados`"
   stabilized_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §a§lOFF§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
   stabilized_discord: "✅ **HALT OFF**\n**TPS**: `%s`\nStatus: `Sistemas normalizados`"
+  chunk_cleaned: "§0[§a!§0] §c§lSEGURANÇA: §7Chunk §e[%d, %d] §7estava superaquecendo. Itens limpos e Redstone ejetada."
 
 commands:
   no_permission: "§cVocê não tem permissão!"

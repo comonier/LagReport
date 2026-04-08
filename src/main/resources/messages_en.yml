@@ -30,6 +30,7 @@ emergency:
   activated_discord: "⚠️ **HALT ON ACTIVATED**\n**TPS**: `%s`\nStatus: `Configured systems have been disabled`"
   stabilized_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §a§lOFF§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
   stabilized_discord: "✅ **HALT OFF**\n**TPS**: `%s`\nStatus: `Systems normalized`"
+  chunk_cleaned: "§0[§a!§0] §c§lSECURITY: §7Chunk §e[%d, %d] §7was overheating. Items cleared and Redstone ejected."
 
 commands:
   no_permission: "§cNo permission!"

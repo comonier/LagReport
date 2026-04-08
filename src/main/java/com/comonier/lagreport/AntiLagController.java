@@ -18,17 +18,27 @@ public class AntiLagController extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (emSimulacao || emContagem) return;
+        if (emSimulacao) return;
+
         double tpsAtual = Math.min(20.0, Bukkit.getTPS()[0]);
+        String tpsF = String.format("%.2f", tpsAtual);
+        
+        // Gatilho 1: Intervenção em Chunks (Entity Overflow)
+        double breakerTps = plugin.getConfig().getDouble("breaker-settings.activation-tps", 16.0);
+        if (tpsAtual <= breakerTps && !modoEmergencia && !emContagem) {
+            new ChunkBreakerTask(plugin).runTask(plugin);
+        }
+
+        // Gatilho 2: Modo de Emergência Global (Halt On)
         double minTps = plugin.getConfig().getDouble("settings.tps-min-threshold", 15.0);
         double maxTps = plugin.getConfig().getDouble("settings.tps-max-threshold", 19.5);
 
-        if (minTps >= tpsAtual && !modoEmergencia) {
-            iniciarContagemRegressiva(String.format("%.2f", tpsAtual));
+        if (minTps >= tpsAtual && !modoEmergencia && !emContagem) {
+            iniciarContagemRegressiva(tpsF);
         }
 
         if (tpsAtual >= maxTps && modoEmergencia) {
-            desativarHalt(String.format("%.2f", tpsAtual));
+            desativarHalt(tpsF);
         }
     }
 
@@ -41,10 +51,8 @@ public class AntiLagController extends BukkitRunnable {
                 if (timeLeft == 60) {
                     Bukkit.broadcastMessage(String.format(plugin.getMsg("emergency.pre_alert_60s"), tps));
                     enviarInfoEventos();
-                    DiscordWebhook.enviar(plugin.getConfig().getString("webhook-url"), "⚠️ **HALT ON EM 60s** | TPS: " + tps);
                 } else if (timeLeft == 30) {
                     Bukkit.broadcastMessage(plugin.getMsg("emergency.pre_alert_30s"));
-                    Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 0.5f));
                 } else if (timeLeft <= 10 && timeLeft > 0) {
                     Bukkit.broadcastMessage(String.format(plugin.getMsg("emergency.pre_alert_10s"), timeLeft));
                     Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1.2f));
@@ -69,6 +77,7 @@ public class AntiLagController extends BukkitRunnable {
         }
         Bukkit.broadcastMessage(String.format(plugin.getMsg("emergency.event_info"), String.join(", ", ativos)));
         Bukkit.broadcastMessage(plugin.getMsg("emergency.ticket_invite"));
+        DiscordWebhook.enviar(plugin.getConfig().getString("webhook-url"), "⚠️ **CONTTAGEM HALT ON** | Sistemas: " + ativos);
     }
 
     private void ativarHalt(String tps) {
