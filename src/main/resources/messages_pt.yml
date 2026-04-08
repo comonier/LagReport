@@ -4,10 +4,10 @@ simulation:
   warning: "§0[§a!§0] §0[§l§cALERT§0]§0: §7Simulação em§a %d §7segundos!"
   alert_discord: "⚠️ **ATENÇÃO:** Em %d segundos o servidor entrará em estado de emergência (SIMULAÇÃO). HALT ON! 🚨"
   final_countdown: "§0[§a!§0] §0[§l§cALERT§0]§0: §7Simulação em§a %d §7segundos!"
-  activated_game: "\n§0[§a!§0] §0[§e☢ §eSimulação Ativa ☢§0]\n§0[§a!§0] §0[§4HALT ON§0] §0[§aEventos desativados§0]§0[§bÁgua§7, §eMobs§7, §fIA§7, §cRedstone§0]\n§0[§a!§0] §7O teste termina em §a15 §7segundos... (ou não, bugs ocorrem 😂)\n"
+  activated_game: "\n§0[§a!§0] §0[§e☢ §eSimulação Ativa ☢§0]\n§0[§a!§0] §0[§4HALT ON§0] §0[§aEventos desativados§0]\n"
   activated_discord: "🚨 **HALT ON ATIVADO** (Modo Simulação). Sistemas congelados!"
   tick_countdown: "§0[§a!§0] §0[§4HALT ON§0] §8Finalizando teste em§a %d §8segundos..."
-  finished_game: "§0[§a!§0]§0[§aHALT OFF§0]§0[§7Testes Finalizados§0][§7Sistemas normalizados§0]"
+  finished_game: "§0[§a!§0]§0[§aHALT OFF§0]§0[§7Testes Finalizados§0]"
   finished_discord: "✅ **SIMULAÇÃO ENCERRADA**: Servidor estabilizado."
 
 report:
@@ -18,29 +18,24 @@ report:
   total_chunks: "TOTAL CHUNKS: %d"
   total_entities: "TOTAL ENTIDADES: %d"
   tps_label: "SERVER TPS: %.2f"
-  footer_note: "*Nota: Somas de jogadores representam carga cumulativa dos clientes; Status do Servidor reflete instâncias únicas de hardware.*"
+  footer_note: "*Nota: Somas refletem carga cumulativa; Status reflete hardware único.*"
 
 emergency:
-  activated_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §4§lON§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
-  activated_discord: "⚠️ **HALT ON**\n**TPS**: `%s`\nStatus: `Desligando Minecraft Events`\n@everyone"
-  stabilized_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §a§lOFF§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
-  stabilized_discord: "✅ **HALT OFF**\n**TPS**: `%s`\nStatus: `Religando Minecraft Events`"
-
-commands:
-  no_permission: "§cVocê não tem permissão para usar este comando."
-  reload_success: "§aConfigurações e idiomas recarregados com sucesso!"
-  audit_generating: "§eGerando auditoria de hardware... Verifique o Discord."
-  audit_sent: "§aRelatório de hardware enviado com sucesso!"
-  simulation_start: "§eIniciando sequência de simulação de 60 segundos..."
-  sf_requesting: "§eSolicitando timings do Slimefun... Verifique o Discord em instantes."
-  unknown: "§cComando desconhecido. Use /lagreport para ajuda."
-
-emergency:
-  pre_alert_game: "§0[§a!§0] §0[§l§cALERTA§0] §7TPS baixo (§c%s§7). O modo §eHALT ON §7será ativado em §a60 segundos§7!"
-  pre_alert_discord: "⚠️ **PRÉ-ALERTA DE EMERGÊNCIA**: TPS em `%s`. HALT ON em 60 segundos!"
-  event_info: "§8- §7Sistemas afetados: §f%s"
-  ticket_invite: "§e§lDICA: §7Acredita que sua farm está causando lag? Abra um §b/ticket§7! A staff pode otimizar o servidor para você manter sua farm ativa."
   pre_alert_60s: "§0[§a!§0] §0[§l§cALERTA§0] §7TPS baixo (§c%s§7). §eHALT ON §7em §a60 segundos§7!"
   pre_alert_30s: "§0[§a!§0] §0[§l§cALERTA§0] §7Emergência iminente! §eHALT ON §7em §a30 segundos§7!"
   pre_alert_10s: "§0[§a!§0] §0[§l§cALERTA§0] §7Ativando protocolos em §a%d §7segundos..."
+  event_info: "§8- §7Sistemas afetados: §f%s"
+  ticket_invite: "§e§lDICA: §7Acredita que sua farm causa lag? Abra um §b/ticket§7! A staff pode otimizar o servidor."
+  activated_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §4§lON§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
+  activated_discord: "⚠️ **HALT ON ATIVADO**\n**TPS**: `%s`\nStatus: `Sistemas configurados foram desligados`"
+  stabilized_game: "§0[§a!§0]§0[§cLagReport §0[§eHALT §a§lOFF§0]§0[§bTPS§0: §0[§a§l(%s)§0]"
+  stabilized_discord: "✅ **HALT OFF**\n**TPS**: `%s`\nStatus: `Sistemas normalizados`"
 
+commands:
+  no_permission: "§cVocê não tem permissão!"
+  reload_success: "§aConfigurações e idiomas recarregados!"
+  audit_generating: "§eGerando auditoria... Verifique o Discord."
+  audit_sent: "§aRelatório enviado!"
+  simulation_start: "§eIniciando simulação de 60 segundos..."
+  sf_requesting: "§eSolicitando timings do Slimefun..."
+  unknown: "§cComando desconhecido."
